@@ -1,0 +1,14 @@
+.filter-component {
+    margin: 20px 0;
+}
+
+.filter-component label {
+    margin-right: 10px;
+}
+
+.filter-component select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
