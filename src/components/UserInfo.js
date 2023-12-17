@@ -1,12 +1,10 @@
 import React from 'react';
 import './UserInfo.css';
 
-const UserInfo = () => {
+const UserInfo = ({ isLoggedIn, userName }) => {
     return (
         <div className="user-info">
-            <p>Welcome User!</p>
-            <button>Sign In</button>
-            <button>Developers</button>
+            {isLoggedIn && <span>Welcome, {userName}!</span>}
         </div>
     );
 }
