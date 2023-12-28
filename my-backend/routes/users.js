@@ -1,5 +1,4 @@
 const express = require('express');
-<<<<<<< HEAD
 const User = require('../models/user'); // Adjust the path as needed
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -94,10 +93,5 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   res.redirect('/success'); // Or your success route
 });
-=======
-const router = express.Router();
-
-// Add your user-related route handlers here
->>>>>>> 3b1e05039716ee7060a35d49178e7587a01766ba
 
 module.exports = router;
