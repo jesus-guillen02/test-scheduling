@@ -1,0 +1,72 @@
+  /* Style for events */
+  .rbc-event {
+    background-color: #3174ad; /* Example color */
+    color: white;
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .rbc-header {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .ReactModal__Content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    /* Other modal styles */
+  }
+  
+  /* Style for form fields */
+  input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for buttons */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+
+@media (max-width: 768px) {
+    .rbc-calendar {
+      /* Example adjustments for smaller screens */
+      font-size: 14px;
+    }
+    .rbc-event {
+      padding: 2px;
+      font-size: 10px;
+    }
+    .rbc-header {
+      font-size: 12px;
+      padding: 5px;
+      text-align: center;
+    }
+    .rbc-row-content {
+      min-height: 40px; /* Adjust the height of calendar rows */
+    }
+  }
+  
