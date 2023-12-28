@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserInfo from './components/UserInfo';
 import NavigationBar from './components/NavigationBar';
@@ -9,11 +10,19 @@ import ScholarSchedule from './pages/ScholarSchedule';
 import CandidateSchedule from './pages/CandidateSchedule';
 import EditPage from './pages/EditPage';
 import AboutUs from './pages/AboutUs';
+=======
+import UserInfo from './components/UserInfo'
+import NavigationBar from './components/NavigationBar'; // Assuming this is the correct path
+import MainContent from './components/MainContent'; // Assuming this is the correct path
+import AboutSection from './components/AboutSection'; // Assuming this is the correct path
+import Footer from './components/Footer'; // Assuming this is the correct path
+>>>>>>> 3b1e05039716ee7060a35d49178e7587a01766ba
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <Router>
         <NavigationBar />
         <UserInfo />
@@ -27,8 +36,21 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+=======
+      <NavigationBar />
+      <UserInfo />
+      <MainContent>
+        {/* Content based on routing or state */}
+      </MainContent>
+      <AboutSection />
+      <Footer />
+>>>>>>> 3b1e05039716ee7060a35d49178e7587a01766ba
     </div>
   );
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> 3b1e05039716ee7060a35d49178e7587a01766ba

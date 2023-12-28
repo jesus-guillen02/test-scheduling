@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+<<<<<<< HEAD
 const Schedule = require('../models/schedule'); // Adjust the path as needed
 const { generateOptimalSchedule } = require('../logic/schedulingAlgorithm'); // Import the scheduling function
 
@@ -83,5 +84,9 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+=======
+
+// Add your GET, POST, PUT, DELETE route handlers here
+>>>>>>> 3b1e05039716ee7060a35d49178e7587a01766ba
 
 module.exports = router;
