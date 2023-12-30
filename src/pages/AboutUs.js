@@ -3,12 +3,24 @@ import { Link } from 'react-router-dom';
 import './AboutUs.css';
 
 function AboutUs() {
+  const scholarsByYear = {
+    '2024': [{ name: 'Jesus Guillen', id: '1' }, { name: 'Scholar 2', id: '2' }],
+    '2025': [{ name: 'Scholar 3', id: '3' }],
+    // More scholars grouped by year...
+  };
 
-  const scholars = [
-    { name: 'Scholar 1', path: '/scholar1' },
-    { name: 'Scholar 2', path: '/scholar2' },
-    // More scholars...
-  ];
+  const renderScholars = (year) => (
+    <div>
+      <h2>Class of '{year.substring(2)}</h2>
+      <div>
+        {scholarsByYear[year].map(scholar => (
+          <Link key={scholar.id} to={`/scholar/${scholar.id}`}>
+            {scholar.name} |
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="aboutUs">
@@ -16,13 +28,8 @@ function AboutUs() {
       <p>Welcome to [Your App Name], a tool designed to...</p>
       <h1>Our Mission</h1>
       <p>Our mission is to...</p>
-      {/* Additional sections like team information, history, etc. */}
-      <h2>Class of XX</h2>
-      <div className="scholar-links">
-        {scholars.map(scholar => (
-          <Link key={scholar.name} to={scholar.path}>{scholar.name}</Link>
-        ))}
-      </div>
+      {/* Static content */}
+      {Object.keys(scholarsByYear).map(year => renderScholars(year))}
       {/* Social media links or other contact information */}
     </div>
   );
