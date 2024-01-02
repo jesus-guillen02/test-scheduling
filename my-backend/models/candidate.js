@@ -5,6 +5,9 @@ const candidateSchema = new mongoose.Schema({
   bio: String, // Biography included in the model
   photo: String, // URL to the photo
   major: String,
+  interests: String,
+  highschool: String,
+  hometown: String,
   // Additional fields as required (Hometown)
 });
 
