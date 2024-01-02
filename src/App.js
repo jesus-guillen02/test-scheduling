@@ -10,6 +10,7 @@ import CandidateSchedule from './pages/CandidateSchedule';
 import EditPage from './pages/EditPage';
 import AboutUs from './pages/AboutUs';
 import './App.css';
+import '../src/pages/HomePage.css'
 
 function App() {
   return (
