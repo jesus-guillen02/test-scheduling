@@ -4,7 +4,7 @@ import './AboutUs.css';
 
 function AboutUs() {
   const scholarsByYear = {
-    '2024': [{ name: 'Jesus Guillen', id: '1' }, { name: 'Scholar 2', id: '2' }],
+    '2024': [{ name: 'Jesus Guillen', id: '1' }, { name: ' Scholar 2', id: '2' }],
     '2025': [{ name: 'Scholar 3', id: '3' }],
     // More scholars grouped by year...
   };
