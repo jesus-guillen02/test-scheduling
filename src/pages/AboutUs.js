@@ -45,14 +45,18 @@ function AboutUs() {
       <h1>About Us</h1>
       <p>Welcome to our Scholar's 'About Us' Page!</p>
       {Object.keys(scholarsByYear).map(year => renderScholars(year))}
-      <h1>Our Mission</h1>
-      <p>The Top Scholar Program and the UTSA Honors College provide a unique educational experience for academically talented students. Our students join our community from across Texas, the United States, and all over the world. They are diverse in thought and share a commitment to excellence. The Honors College is open to students from all academic disciplines and currently has 2,000+ students. We welcome students from all backgrounds into our community. Through our curriculum, special programs, and academic counseling, we help students reimagine their horizons so that they exceed their own expectations. We believe that students succeed when they are well-rounded, and our curriculum lets them customize their learning inside and outside of the classroom in six areas: Service, Professional Development, Intellectual Achievement and Research, Cultural Exploration, Engaged Living, and Skill Development (S.P.I.C.E.S.).
+
+      <div className="mission-statement">
+        <h1>Our Mission</h1>
+        <p>The Top Scholar Program and the UTSA Honors College provide a unique educational experience for academically talented students. Our students join our community from across Texas, the United States, and all over the world. They are diverse in thought and share a commitment to excellence. The Honors College is open to students from all academic disciplines and currently has 2,000+ students. We welcome students from all backgrounds into our community. Through our curriculum, special programs, and academic counseling, we help students reimagine their horizons so that they exceed their own expectations. We believe that students succeed when they are well-rounded, and our curriculum lets them customize their learning inside and outside of the classroom in six areas: Service, Professional Development, Intellectual Achievement and Research, Cultural Exploration, Engaged Living, and Skill Development (S.P.I.C.E.S.).
       By making Honors a place where knowledge comes alive to solve problems, we develop talented, committed students who will contribute to the intellectual, economic, and social capital of San Antonio and the State of Texas. The experiences that the Honors College creates yield jobs, a robust and multigenerational landscape of leaders, and broader political and civic participation. As much as we coach students toward academic and career success, our ethos stresses that students are honorable, equitable, resilient, benevolent, and supportive (H.E.R.B.S.).
       In this section of our site, you’ll meet our staff and our community partners and learn about what we stand for as an Honors Community.</p>
+      </div>
+
       {/* Static content */}
       {/* Social media links or other contact information */}
-    </div>
-  );
-}
+    </div>    
+  );   
+};
 
 export default AboutUs;
