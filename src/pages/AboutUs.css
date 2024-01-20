@@ -2,6 +2,10 @@
     padding: 20px;
     text-align: center;
   }
-  
-  /* Style this page to provide information about your team and application */
-  
+.scholar-line {
+    margin-bottom: 2px; /* Space between the two lines */
+  }
+.scholar-link {
+    margin-right: 2px;
+    white-space: nowrap;
+  }

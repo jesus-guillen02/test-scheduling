@@ -1,0 +1,16 @@
+#scholar-info {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#scholar-info h2 {
+    color: #333;
+    font-size: 1.5em;
+}
+
+#scholar-info p {
+    color: #666;
+    font-size: 1em;
+}
