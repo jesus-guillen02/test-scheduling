@@ -20,9 +20,9 @@ function App() {
         <UserInfo />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/scholar-schedule" element={<ScholarSchedule />} />
-          <Route path="/candidate-schedule" element={<CandidateSchedule />} />
-          <Route path="/edit" element={<EditPage />} />
+          <Route path="/scholars" element={<ScholarSchedule />} />
+          <Route path="/candidates" element={<CandidateSchedule />} />
+          <Route path="/markup-edit" element={<EditPage />} />
           <Route path="/about" element={<AboutUs />} />
           {/* Add other routes as needed */}
         </Routes>

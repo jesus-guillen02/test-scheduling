@@ -1,7 +1,12 @@
-.editPage {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Define styles for editing interfaces, forms, buttons, etc. */
-  
+.editPageContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Split into two equal columns */
+  gap: 20px; /* Space between columns */
+  padding: 20px;
+}
+
+.section {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+}
