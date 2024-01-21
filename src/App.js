@@ -9,6 +9,7 @@ import ScholarSchedule from './pages/ScholarSchedule';
 import CandidateSchedule from './pages/CandidateSchedule';
 import EditPage from './pages/EditPage';
 import AboutUs from './pages/AboutUs';
+import AboutUsScholars from './pages/AboutUsScholars'
 import './App.css';
 import '../src/pages/HomePage.css'
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/candidates" element={<CandidateSchedule />} />
           <Route path="/markup-edit" element={<EditPage />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/about/:scholarId" component={AboutUsScholars} />
           {/* Add other routes as needed */}
         </Routes>
         <Footer />
