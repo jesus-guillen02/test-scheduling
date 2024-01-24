@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './AboutUs.css';
 
-function AboutUs() {
-  const scholarsByYear = {
-    '2024': [{ name: 'Aguilar, Madeline', id: '1' }, { name: ' Coppin, Marissa', id: '2' }, { name: ' Duque, Margot', id: '3' }, { name: ' Guillen, Jesus', id: '4' }, { name: ' Ho, Alexis', id: '5' } ,{ name: ' Hughes, William', id: '6' }, { name: ' Narayanan, Tejas', id: '7' }, { name: ' Surampudi, Swapomti', id: '8' }],
+  const initialScholarsByYear = {
+    '2024': [{ name: 'Aguilar, Madeline', slug: 'madeline-aguilar' }, { name: ' Coppin, Marissa', id: '2' }, { name: ' Duque, Margot', id: '3' }, { name: ' Guillen, Jesus', id: '4' }, { name: ' Ho, Alexis', id: '5' } ,{ name: ' Hughes, William', id: '6' }, { name: ' Narayanan, Tejas', id: '7' }, { name: ' Surampudi, Swapomti', id: '8' }],
     '2025': [{ name: 'Burchfield, Jordan', id: '9' }, { name: ' Busari, Aliyyah', id: '10' }, { name: ' De Guzman, Catherine', id: '11' }, { name: ' Estrada-Contreras, Edith', id: '12' }, { name: ' Gonzalez, Carolina', id: '13' }, { name: ' Lugo, Samantha', id: '14' }, { name: ' Nguyen, Emily', id: '15' }, { name: ' Schwartz, Alana', id: '16' }, { name: ' Trujillo, Kayla', id: '17' }],
     '2026': [{ name: 'Aminkeng, Ashlie-Chelsie', id: '18' }, { name: ' Awad, North', id: '19' }, { name: ' Chidambaram, Adhishree', id: '20' }, { name: ' Graham, Journie', id: '21' }, { name: ' Hughes, Patrick', id: '22' }, { name: ' Medrano, Jasbeth', id: '23' }, { name: ' Morales, Jose', id: '24' }, { name: ' Pozos, Michael', id: '25' }, { name: ' Romero, Jade', id: '26' }, { name: ' Vallejo-Chapa, Ana', id: '27' }],
     '2027': [{ name: 'Babu, Sahana', id: '28' }, { name: ' Burroughs, Madeleine', id: '29' }, { name: ' Espinoza, Jonah', id: '30' }, { name: ' Hijazi, Zeina', id: '31' }, { name: ' Ho, Megan', id: '32' }, { name: ' Monrroy-Huerta, Ashley', id: '33' }, { name: ' Nguyen, Collin', id: '34' }, { name: ' Ohaji, Chizitere', id: '35' }, { name: ' Pagnozzi, Ricky', id: '36' }, { name: ' Simpson, Kamian', id: '37' }],
     // More scholars grouped by year...
   };
 
+  function AboutUs() {
+    const [scholarsByYear, setScholarsByYear] = useState(initialScholarsByYear);
+  
+    useEffect(() => {
+    const fetchScholars = async () => {
+      try {
+        const response = await fetch('/api/scholars'); // Replace with your actual API endpoint
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const fetchedScholars = await response.json();
+
+        // Update the initial data with slugs from the fetched data
+        const updatedScholars = Object.keys(scholarsByYear).reduce((acc, year) => {
+          acc[year] = scholarsByYear[year].map(scholar => {
+            const fetchedScholar = fetchedScholars.find(f => f.id === scholar.id);
+            return { ...scholar, slug: fetchedScholar?.slug };
+          });
+          return acc;
+        }, {});
+
+        setScholarsByYear(updatedScholars);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+
+    fetchScholars();
+  }, []);
+
   const renderScholars = (year) => {
     const totalScholars = scholarsByYear[year].length;
-    // Define the split point, more on the top line
     const splitPoint = Math.ceil(totalScholars * 0.5); // Adjust the ratio as needed
   
     const topLineScholars = scholarsByYear[year].slice(0, splitPoint);
@@ -22,22 +50,22 @@ function AboutUs() {
     const renderLine = (scholars) => (
       <div className="scholar-line">
         {scholars.map((scholar, index) => (
-          <Link key={scholar.slug} to={`/about/scholars/${scholar.slug}`} className="scholar-link">
+          <Link key={scholar.id} to={`/about/scholars/${scholar.slug}`} className="scholar-link">
             {scholar.name}{index < scholars.length - 1 ? ' | ' : ''}
           </Link>
         ))}
       </div>
     );
+    
   
     return (
-      <div>
+      <div key={year}>
         <h2>Class of '{year.substring(2)}</h2>
         {renderLine(topLineScholars)}
         {renderLine(bottomLineScholars)}
       </div>
     );
   };
-  
 
 
   return (

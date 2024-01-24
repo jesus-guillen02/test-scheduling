@@ -21,8 +21,9 @@ const scholarSchema = new mongoose.Schema({
   },
 });
 
-// Pre-save hook to generate and update the slug
 scholarSchema.pre('save', async function(next) {
+  console.log('Pre-save hook triggered for scholar:', this);
+
   if (this.isNew || this.isModified('name')) {
     this.slug = slugify(this.name, { lower: true, strict: true });
     console.log('Generated slug:', this.slug);
@@ -39,6 +40,7 @@ scholarSchema.pre('save', async function(next) {
   }
   next();
 });
+
 
 const Scholar = mongoose.model('Scholar', scholarSchema);
 

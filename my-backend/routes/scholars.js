@@ -45,18 +45,22 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// GET - Retrieve a single scholar by Slug
-router.get('/slug/:slug', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const scholar = await Scholar.findOne({ slug: req.params.slug });
-    if (!scholar) {
-      return res.status(404).json({ message: 'Scholar not found' });
-    }
-    res.json(scholar);
+    const slug = slugify(req.body.name, { lower: true, strict: true });
+    const newScholar = new Scholar({
+      ...req.body,
+      slug, // Set the slug explicitly
+    });
+    const savedScholar = await newScholar.save();
+    res.status(201).json(savedScholar);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error saving scholar:', error);
+    res.status(400).json({ message: error.message });
   }
 });
+
+
 
 
 // PUT - Update a scholar by ID
