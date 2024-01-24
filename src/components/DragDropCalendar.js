@@ -87,7 +87,7 @@ const DragDropCalendar = () => {
             default:
                 break;
         }
-        
+
         const style = {
             backgroundColor,
             borderRadius: '5px',

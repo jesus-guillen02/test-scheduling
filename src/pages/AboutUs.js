@@ -22,7 +22,7 @@ function AboutUs() {
     const renderLine = (scholars) => (
       <div className="scholar-line">
         {scholars.map((scholar, index) => (
-          <Link key={scholar.id} to={`/scholars/${scholar.id}`} className="scholar-link">
+          <Link key={scholar.slug} to={`/about/scholars/${scholar.slug}`} className="scholar-link">
             {scholar.name}{index < scholars.length - 1 ? ' | ' : ''}
           </Link>
         ))}

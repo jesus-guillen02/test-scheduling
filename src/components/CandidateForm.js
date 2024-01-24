@@ -16,9 +16,27 @@ function CandidateForm() {
     setCandidateData({ ...candidateData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle Submit Logic (e.g., sending data to a server)
+    try {
+      // Replace with your API endpoint and adjust HTTP method as necessary
+      const response = await fetch(`http://localhost:3001/api/candidates`, {
+        method: 'POST', // or 'PUT' if updating an existing scholar
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(candidateData),
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const responseData = await response.json();
+      console.log('Success:', responseData);
+      // Additional logic on success (e.g., redirect or display a success message)
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors (e.g., display an error message)
+    }
   };
 
   return (

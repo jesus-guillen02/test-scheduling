@@ -4,12 +4,12 @@ import UserInfo from './components/UserInfo';
 import NavigationBar from './components/NavigationBar';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage'; // Import your page components
+import HomePage from './pages/HomePage';
 import ScholarSchedule from './pages/ScholarSchedule';
 import CandidateSchedule from './pages/CandidateSchedule';
 import EditPage from './pages/EditPage';
 import AboutUs from './pages/AboutUs';
-import AboutUsScholars from './pages/AboutUsScholars'
+import ScholarProfile from './pages/ScholarProfile'
 import './App.css';
 import '../src/pages/HomePage.css'
 
@@ -25,14 +25,14 @@ function App() {
           <Route path="/candidates" element={<CandidateSchedule />} />
           <Route path="/markup-edit" element={<EditPage />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/about/:scholarId" component={AboutUsScholars} />
+          <Route path="/about/scholars/:slug" element={<ScholarProfile />} />
           {/* Add other routes as needed */}
         </Routes>
         <Footer />
       </Router>
-
     </div>
   );
 }
 
 export default App;
+
