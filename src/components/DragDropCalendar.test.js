@@ -1,8 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import DragDropCalendar from './DragDropCalendar';
 
-test('renders drag and drop calendar', () => {
+test('renders drag and drop calendar without crashing', async () => {
   render(<DragDropCalendar />);
-  // Add specific assertions here
+
+  // Assuming your calendar has a specific role or testid
+  expect(await screen.findByRole('grid')).toBeInTheDocument();
 });
