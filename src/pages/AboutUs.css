@@ -1,7 +1,19 @@
 .aboutUs {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Style this page to provide information about your team and application */
-  
+  padding: 20px;
+}
+
+.mission-statement {
+  max-width: 800px; /* Adjust this to control the width */
+  margin: 0 auto; /* Centers the content */
+  padding: 20px; /* Adds padding around the text */
+  text-align: justify;
+}
+
+/* Additional styles for headings and paragraphs if needed */
+h1 {
+  text-align: center;
+}
+
+p {
+  line-height: 1.6; /* Improves readability */
+}

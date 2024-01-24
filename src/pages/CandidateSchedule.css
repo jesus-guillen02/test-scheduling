@@ -4,5 +4,8 @@
 }
 
 .schedule-container {
-  /* Styles for the schedule display */
+  width: 100%; /* or a specific width like 800px */
+  height: 600px; /* adjust as needed */
+  margin: auto;
+  background-color: #f9f9f9; /* just for visibility, adjust as needed */
 }
