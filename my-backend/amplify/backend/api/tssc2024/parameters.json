@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "tssc2024",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}

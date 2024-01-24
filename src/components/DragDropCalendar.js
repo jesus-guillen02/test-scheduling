@@ -52,7 +52,7 @@ const DragDropCalendar = () => {
     const onSelectSlot = ({ start, end }) => {
         // Custom logic for slot selection
         // Check for overlap with existing events
-        const overlap = events.some(event => 
+        const overlap = events.some(event =>
             moment(start).isBetween(event.start, event.end) ||
             moment(end).isBetween(event.start, event.end)
         );
@@ -87,7 +87,7 @@ const DragDropCalendar = () => {
             default:
                 break;
         }
-        
+
         const style = {
             backgroundColor,
             borderRadius: '5px',
