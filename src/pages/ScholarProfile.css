@@ -1,0 +1,22 @@
+.scholar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .scholar-text, .scholar-image {
+    flex: 1; /* Divide space evenly */
+    padding: 20px; /* Add some padding */
+  }
+  
+  .scholar-image img {
+    width: 100%; /* Make image take full width of the container */
+    height: auto; /* Keep aspect ratio */
+  }
+  
+  @media (max-width: 768px) {
+    .scholar-container {
+      flex-direction: column;
+    }
+  }
+  

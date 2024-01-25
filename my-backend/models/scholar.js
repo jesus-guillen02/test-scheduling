@@ -19,6 +19,7 @@ const scholarSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  imageURL: String,
 });
 
 scholarSchema.pre('save', async function(next) {
