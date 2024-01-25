@@ -1,50 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Scholar = require('../models/scholar'); // Adjust path to your Scholar model
+const slugify = require('slugify'); // Require slugify if you are using it
 
 // POST - Add a new scholar
-router.post('/', async (req, res) => {
-  try {
-    const newScholar = new Scholar({
-      name: req.body.name,
-      hometown: req.body.hometown,
-      classYear: req.body.classYear,
-      bio: req.body.bio,
-      internshipsResearch: req.body.internshipsResearch ,
-      awards: req.body.awards,
-      majors: req.body.majors,
-      minors: req.body.minors,
-    });
-    const savedScholar = await newScholar.save();
-    res.status(201).json(savedScholar);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// GET - Retrieve all scholars
-router.get('/', async (req, res) => {
-  try {
-    const scholars = await Scholar.find();
-    res.json(scholars);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// GET - Retrieve a single scholar by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const scholar = await Scholar.findById(req.params.id);
-    if (!scholar) {
-      return res.status(404).json({ message: 'Scholar not found' });
-    }
-    res.json(scholar);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 router.post('/', async (req, res) => {
   try {
     const slug = slugify(req.body.name, { lower: true, strict: true });
@@ -60,10 +19,42 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET - Retrieve all scholars
+router.get('/', async (req, res) => {
+  try {
+    const scholars = await Scholar.find();
+    res.json(scholars);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
+// GET - Retrieve a single scholar by Slug
+router.get('/:slug', async (req, res) => {
+  try {
+    const scholar = await Scholar.findOne({ slug: req.params.slug });
+    if (!scholar) {
+      return res.status(404).json({ message: 'Scholar not found' });
+    }
+    res.json(scholar);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
+// GET - Retrieve a single scholar by ID (only matches valid MongoDB ObjectIds)
+router.get('/:id([0-9a-fA-F]{24})', async (req, res) => {
+  try {
+    const scholar = await Scholar.findById(req.params.id);
+    if (!scholar) {
+      return res.status(404).json({ message: 'Scholar not found' });
+    }
+    res.json(scholar);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-// PUT - Update a scholar by ID
 // PUT - Update a scholar by ID
 router.put('/:id', async (req, res) => {
   try {
@@ -82,8 +73,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-
-
 // DELETE - Delete a scholar by ID
 router.delete('/:id', async (req, res) => {
   try {
@@ -98,3 +87,4 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+

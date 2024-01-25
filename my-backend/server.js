@@ -15,6 +15,7 @@ const schedulesRouter = require('./routes/schedules'); // Adjust the path as nee
 const mongoose = require('mongoose');
 const session = require('express-session');
 
+
 // Session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET, // Use the secret key from your .env file
