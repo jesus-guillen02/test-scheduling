@@ -25,6 +25,14 @@ function AboutUsScholars() {
       });
   }, [slug]);
 
+  const formatName = (name, prefName) => {
+    return prefName ? `${name} (${prefName})` : name;
+  };
+  
+  const formatInterests = (interests) => {
+    return Array.isArray(interests) ? interests.join(', ') : interests;
+  };
+
   if (error) return <div>Error: {error}</div>;
   if (!scholarData) return <div>Loading...</div>;
 
@@ -38,12 +46,11 @@ function AboutUsScholars() {
   return (
     <div className="about-us-scholars-container">
       <div className="about-us-scholars-text">
-        <h1 className="about-us-scholars-heading">{scholarData.name}</h1>
-        {scholarData.prefName && <p><span className="about-us-scholars-bold">Preferred Name:</span> {scholarData.prefName}</p>}
+        <h1 className="about-us-scholars-heading">{formatName(scholarData.name, scholarData.prefName)}</h1>
         {scholarData.pronouns && <p><span className="about-us-scholars-bold">Pronouns:</span> {scholarData.pronouns}</p>}
         {scholarData.hometown && <p><span className="about-us-scholars-bold">Hometown:</span> {scholarData.hometown}</p>}
         {scholarData.classYear && <p><span className="about-us-scholars-bold">Class Year:</span> {scholarData.classYear}</p>}
-        {scholarData.interests && <p><span className="about-us-scholars-bold">Interests:</span> {scholarData.interests}</p>}
+        {scholarData.interests && <p><span className="about-us-scholars-bold">Interests:</span> {formatInterests(scholarData.interests)}</p>}
         {scholarData.bio && <p><span className="about-us-scholars-bold">Biography:</span> {scholarData.bio}</p>}
         {scholarData.internshipsResearch && <div><span className="about-us-scholars-bold">Internships/Research:</span>{renderList(scholarData.internshipsResearch)}</div>}
         {scholarData.awards && <div><span className="about-us-scholars-bold">Awards:</span>{renderList(scholarData.awards)}</div>}
@@ -56,6 +63,7 @@ function AboutUsScholars() {
         src={photoUrl} 
         alt={`${scholarData.name}`} 
         className="about-us-scholars-image" 
+        loading="lazy" // Add lazy loading
       />
     </div>
   );
