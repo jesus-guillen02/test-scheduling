@@ -28,9 +28,8 @@ function AboutUsScholars() {
   if (error) return <div>Error: {error}</div>;
   if (!scholarData) return <div>Loading...</div>;
 
-  const photoUrl = `https://scheduling-offline.s3.amazonaws.com/headshots/${slug}.jpg`;
+  const photoUrl = `https://scheduling-offline.s3.amazonaws.com/headshots/${slug}.jpg` || scholarData.imageURL;
 
-  // Helper function to render arrays as non-bulleted lists
   const renderList = (items) => {
     if (!items || items.length === 0) return null;
     return <ul className="about-us-scholars-list">{items.map((item, index) => <li key={index}>{item}</li>)}</ul>;
@@ -40,7 +39,7 @@ function AboutUsScholars() {
     <div className="about-us-scholars-container">
       <div className="about-us-scholars-text">
         <h1 className="about-us-scholars-heading">{scholarData.name}</h1>
-        {scholarData.prefname && <p><span className="about-us-scholars-bold">Preferred Name:</span> {scholarData.prefname}</p>}
+        {scholarData.prefName && <p><span className="about-us-scholars-bold">Preferred Name:</span> {scholarData.prefName}</p>}
         {scholarData.pronouns && <p><span className="about-us-scholars-bold">Pronouns:</span> {scholarData.pronouns}</p>}
         {scholarData.hometown && <p><span className="about-us-scholars-bold">Hometown:</span> {scholarData.hometown}</p>}
         {scholarData.classYear && <p><span className="about-us-scholars-bold">Class Year:</span> {scholarData.classYear}</p>}
@@ -50,7 +49,8 @@ function AboutUsScholars() {
         {scholarData.awards && <div><span className="about-us-scholars-bold">Awards:</span>{renderList(scholarData.awards)}</div>}
         {scholarData.majors && <div><span className="about-us-scholars-bold">Majors:</span>{renderList(scholarData.majors)}</div>}
         {scholarData.minors && <div><span className="about-us-scholars-bold">Minors:</span>{renderList(scholarData.minors)}</div>}
-        {scholarData.funfacts && <div><span className="about-us-scholars-bold">Fun Facts:</span>{renderList(scholarData.funfacts)}</div>}
+        {scholarData.funFacts && <div><span className="about-us-scholars-bold">Fun Facts:</span>{renderList(scholarData.funFacts)}</div>}
+        {scholarData.facultyConnections && <div><span className="about-us-scholars-bold">Faculty Connections:</span>{renderList(scholarData.facultyConnections)}</div>}
       </div>
       <img 
         src={photoUrl} 

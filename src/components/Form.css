@@ -45,10 +45,27 @@
     background-color: #0056b3;
   }
   
-  /* Style for the section titles */
-  .section-title {
-    text-align: center;
+  .full-width {
+    width: 100%; /* Full width of the form */
+    text-align: center; /* Center align the text */
+  }
+  
+  .full-width label,
+  .full-width input {
+    display: inline-block; /* Align label and input inline */
+    margin: 0 auto; /* Center the elements */
+  }
+
+  .class-year-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align the items */
     width: 100%;
-    grid-column: 1 / -1; /* Span across all columns */
+  }
+  
+  .class-year-container label,
+  .class-year-container input {
+    width: auto; /* Adjust width as needed */
+    margin-bottom: 10px; /* Space between label and input */
   }
   
