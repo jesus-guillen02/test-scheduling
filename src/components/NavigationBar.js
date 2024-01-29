@@ -1,8 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NavigationBar.css';
 import logo from '../photos/top-terry-scholars_680.png'; // Adjust the path to your logo image
 
 const NavigationBar = ({ isLoggedIn, userName }) => {
+    const navigate = useNavigate();
+
+    const handleSignInClick = () => {
+        navigate('/login'); // Redirect to the login page
+    };
+
     return (
         <nav className="navigation-bar">
             <a href="/" className="home-button">
@@ -19,7 +26,7 @@ const NavigationBar = ({ isLoggedIn, userName }) => {
                     <span className="user-greeting">Welcome, {userName}!</span>
                 ) : (
                     <>
-                        <button className="auth-button">Sign In</button>
+                        <button className="auth-button" onClick={handleSignInClick}>Sign In</button>
                         <button className="auth-button">Developers</button>
                     </>
                 )}

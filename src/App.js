@@ -9,7 +9,8 @@ import ScholarSchedule from './pages/ScholarSchedule';
 import CandidateSchedule from './pages/CandidateSchedule';
 import EditPage from './pages/EditPage';
 import AboutUs from './pages/AboutUs';
-import ScholarProfile from './pages/ScholarProfile'
+import ScholarProfile from './pages/ScholarProfile';
+import Login from './pages/Login'; // Import the Login component
 import './App.css';
 import '../src/pages/HomePage.css'
 
@@ -21,6 +22,7 @@ function App() {
         <UserInfo />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} /> {/* Login route */}
           <Route path="/scholars" element={<ScholarSchedule />} />
           <Route path="/candidates" element={<CandidateSchedule />} />
           <Route path="/markup-edit" element={<EditPage />} />
@@ -35,4 +37,5 @@ function App() {
 }
 
 export default App;
+
 

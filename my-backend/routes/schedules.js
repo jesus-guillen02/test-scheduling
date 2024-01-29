@@ -1,86 +1,82 @@
 const express = require('express');
+const User = require('../models/user'); // Adjust the path as needed
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
-const Schedule = require('../models/schedule'); // Adjust the path as needed
-const { generateOptimalSchedule } = require('../logic/schedulingAlgorithm'); // Import the scheduling function
+const authenticateToken = require('../middlewares/auth'); // Adjust the path as needed
 
-// POST - Create a new schedule
-router.post('/', async (req, res) => {
+// POST /api/users/register - Register a new user
+router.post('/register', async (req, res) => {
   try {
-    const newSchedule = new Schedule(req.body);
-    await newSchedule.save();
-    res.status(201).json(newSchedule);
+    const { password, ...otherDetails } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+
+    const user = new User({
+      ...otherDetails,
+      password: hashedPassword // Store the hashed password
+    });
+
+    await user.save();
+    res.status(201).send({ user: user._id }); // Send back only the user ID for security
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error(error);
+    res.status(400).send({ error: error.message });
   }
 });
 
-// GET - Retrieve all schedules with populated references
-router.get('/', async (req, res) => {
+// POST /api/users/login - Authenticate a user
+router.post('/login', async (req, res) => {
   try {
-    const schedules = await Schedule.find()
-      .populate('linkedScholars', 'name') // Adjust second argument to select specific fields
-      .populate('linkedCandidates', 'name'); // Adjust as needed
-    res.json(schedules);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+    const user = await User.findOne({ email: req.body.email });
 
-// GET - Retrieve a specific schedule by its ID with populated references
-router.get('/:id', async (req, res) => {
-  try {
-    const schedule = await Schedule.findById(req.params.id)
-      .populate('linkedScholars', 'name')
-      .populate('linkedCandidates', 'name');
-    if (!schedule) {
-      return res.status(404).json({ message: 'Schedule not found' });
-    }
-    res.json(schedule);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// PUT - Update a schedule by its ID
-router.put('/:id', async (req, res) => {
-  try {
-    const updatedSchedule = await Schedule.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedSchedule);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// POST endpoint to generate a new optimal schedule
-router.post('/generate', async (req, res) => {
-  console.log(req.body);
-  try {
-    // Extract the actual arrays of IDs and scheduleId from the request body
-    const { scheduleId, eventsIds, scholarIds, candidateIds } = req.body;
-
-    // Ensure the body contains the necessary data
-    if (!scheduleId || !eventsIds || !scholarIds || !candidateIds) {
-      return res.status(400).json({ message: "Missing scheduleId, eventsIds, scholarIds, or candidateIds in request body" });
+    if (!user) {
+      return res.status(404).send('User not found.');
     }
 
-    // Call the generateOptimalSchedule function with the extracted data
-    const optimalSchedule = await generateOptimalSchedule(scheduleId, eventsIds, scholarIds, candidateIds);
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
 
-    // Send the response
-    res.status(201).json(optimalSchedule);
+    if (!isMatch) {
+      return res.status(401).send('Invalid credentials.');
+    }
+
+    // Generate a token (assuming you have a secret key for JWT)
+    const token = jwt.sign({ _id: user._id }, process.env.secretOrPrivateKey);
+
+    res.send({ token }); // Send the token to the client
   } catch (error) {
-    // Error handling
-    res.status(500).json({ message: error.message });
+    console.error("Login error:", error);
+    res.status(500).send(error.message);
   }
 });
 
-// DELETE - Delete a schedule by its ID
-router.delete('/:id', async (req, res) => {
+// POST /api/users/logout - Logout a user
+// Note: Since JWT is stateless, logout is typically handled on the client by deleting the token.
+router.post('/logout', async (req, res) => {
   try {
-    await Schedule.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Schedule deleted successfully' });
+    // You can include logic to handle token blacklisting here if you implement a server-side token blacklist
+    res.send({ message: 'User logged out successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).send(error);
+  }
+});
+
+// GET /api/users/profile - Get the logged-in user's profile
+router.get('/profile', authenticateToken, async (req, res) => {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).send({ error: 'User not authenticated' });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    const { password, ...userWithoutPassword } = user.toObject();
+    res.send(userWithoutPassword);
+  } catch (error) {
+    console.error("Profile Error:", error);
+    res.status(500).send({ error: error.message });
   }
 });
 
