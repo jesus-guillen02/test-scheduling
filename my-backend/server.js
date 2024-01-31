@@ -9,12 +9,11 @@ const candidatesRouter = require('./routes/candidates');
 const userRoutes = require('./routes/users');
 const eventsRouter = require('./routes/events');
 const scholarsRouter = require('./routes/scholars');
-const uploadRouter = require('./routes/uploads');
 const schedulesRouter = require('./routes/schedules'); // Adjust the path as needed
+const developerRoutes = require('./routes/devs'); // Adjust path as needed
 
 const mongoose = require('mongoose');
 const session = require('express-session');
-
 
 // Session configuration
 app.use(session({
@@ -34,8 +33,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/candidates', candidatesRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/scholars', scholarsRouter);
-app.use('/api/uploads', uploadRouter);
 app.use('/api/schedules', schedulesRouter);
+app.use('/api/developers', developerRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.DB_URI)

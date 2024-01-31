@@ -1,5 +1,7 @@
 const express = require('express');
 const User = require('../models/user'); // Adjust the path as needed
+const Scholar = require ('../models/scholar');
+const Candidate = require ('../models/scholar');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -10,16 +12,34 @@ const authenticateToken = require('../middlewares/auth'); // Adjust the path as 
 // POST /api/users/register - Register a new user
 router.post('/register', async (req, res) => {
   try {
-    const { password, ...otherDetails } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+    const { password, role, profileData, ...otherDetails } = req.body;
 
+    let profile;
+
+    // Create either a Scholar or Candidate based on the role
+    if (role === 'Scholar') {
+      const newScholar = new Scholar(profileData);
+      profile = await newScholar.save();
+    } else if (role === 'Candidate') {
+      const newCandidate = new Candidate(profileData);
+      profile = await newCandidate.save();
+    } else {
+      throw new Error('Invalid role specified');
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new User and link it to the Scholar/Candidate
     const user = new User({
       ...otherDetails,
-      password: hashedPassword // Store the hashed password
+      password: hashedPassword,
+      role, // 'Scholar' or 'Candidate'
+      profile: profile._id
     });
 
     await user.save();
-    res.status(201).send({ user: user._id }); // Send back only the user ID for security
+    res.status(201).send({ user: user._id });
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: error.message });

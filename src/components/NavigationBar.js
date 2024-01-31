@@ -7,7 +7,11 @@ const NavigationBar = ({ isLoggedIn, userName }) => {
     const navigate = useNavigate();
 
     const handleSignInClick = () => {
-        navigate('/login'); // Redirect to the login page
+        navigate('/login'); // Redirect to the user login page
+    };
+
+    const handleDevSignInClick = () => {
+        navigate('/developers/login'); // Redirect to the developers login page
     };
 
     return (
@@ -27,7 +31,7 @@ const NavigationBar = ({ isLoggedIn, userName }) => {
                 ) : (
                     <>
                         <button className="auth-button" onClick={handleSignInClick}>Sign In</button>
-                        <button className="auth-button">Developers</button>
+                        <button className="auth-button" onClick={handleDevSignInClick}>Developers</button>
                     </>
                 )}
             </div>
@@ -36,3 +40,4 @@ const NavigationBar = ({ isLoggedIn, userName }) => {
 }
 
 export default NavigationBar;
+
