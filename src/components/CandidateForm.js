@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import '../components/Form.css'; // Reusing the same styles as for ScholarForm
+import '../components/Form.css'; // Assuming this path is correct and CSS is appropriate for the form
 
 function CandidateForm() {
   const [candidateData, setCandidateData] = useState({
     name: '',
-    hometown: '',
-    biography: '',
+    bio: '',
     photo: '',
+    college: '',
     intendedMajor: '',
     funFact: '',
     interests: '',
-    college: '',
+    highschool: '',
+    hometown: '',
     day: ''
   });
 
@@ -21,9 +22,9 @@ function CandidateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Replace with your API endpoint and adjust HTTP method as necessary
+      // Ensure this endpoint matches your server's API endpoint for creating or updating a candidate
       const response = await fetch(`http://localhost:3002/api/candidates`, {
-        method: 'POST', // or 'PUT' if updating an existing scholar
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -34,16 +35,15 @@ function CandidateForm() {
       }
       const responseData = await response.json();
       console.log('Success:', responseData);
-      // Additional logic on success (e.g., redirect or display a success message)
+      // Implement success logic, e.g., displaying a success message or redirecting
     } catch (error) {
       console.error('Error:', error);
-      // Handle errors (e.g., display an error message)
+      // Implement error handling logic, e.g., displaying an error message
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-
       <div className="field-container">
         <label>Name:</label>
         <input type="text" name="name" value={candidateData.name} onChange={handleChange} />
@@ -54,9 +54,9 @@ function CandidateForm() {
         <input type="text" name="hometown" value={candidateData.hometown} onChange={handleChange} />
       </div>
 
-      <div className="full-width">
+      <div className="field-container">
         <label>Biography:</label>
-        <textarea name="biography" value={candidateData.biography} onChange={handleChange} />
+        <textarea name="bio" value={candidateData.bio} onChange={handleChange} />
       </div>
 
       <div className="field-container">
@@ -80,6 +80,11 @@ function CandidateForm() {
       </div>
 
       <div className="field-container">
+        <label>High School:</label>
+        <input type="text" name="highschool" value={candidateData.highschool} onChange={handleChange} />
+      </div>
+
+      <div className="field-container">
         <label>College:</label>
         <input type="text" name="college" value={candidateData.college} onChange={handleChange} />
       </div>
@@ -97,3 +102,4 @@ function CandidateForm() {
 }
 
 export default CandidateForm;
+
