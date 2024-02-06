@@ -9,7 +9,9 @@ function CandidateForm() {
     photo: '',
     intendedMajor: '',
     funFact: '',
-    interests: ''
+    interests: '',
+    college: '',
+    day: ''
   });
 
   const handleChange = (e) => {
@@ -20,7 +22,7 @@ function CandidateForm() {
     e.preventDefault();
     try {
       // Replace with your API endpoint and adjust HTTP method as necessary
-      const response = await fetch(`http://localhost:3001/api/candidates`, {
+      const response = await fetch(`http://localhost:3002/api/candidates`, {
         method: 'POST', // or 'PUT' if updating an existing scholar
         headers: {
           'Content-Type': 'application/json',
@@ -75,6 +77,16 @@ function CandidateForm() {
       <div className="field-container">
         <label>Interests:</label>
         <input type="text" name="interests" value={candidateData.interests} onChange={handleChange} />
+      </div>
+
+      <div className="field-container">
+        <label>College:</label>
+        <input type="text" name="college" value={candidateData.college} onChange={handleChange} />
+      </div>
+
+      <div className="field-container">
+        <label>Day:</label>
+        <input type="text" name="day" value={candidateData.day} onChange={handleChange} />
       </div>
 
       <div className="full-width">

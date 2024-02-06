@@ -4,10 +4,12 @@ const candidateSchema = new mongoose.Schema({
   name: String,
   bio: String, // Biography included in the model
   photo: String, // URL to the photo
+  college: String,
   major: String,
   interests: String,
   highschool: String,
   hometown: String,
+  Day: String
   // Additional fields as required (Hometown)
 });
 
