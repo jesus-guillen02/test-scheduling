@@ -1,19 +1,46 @@
+/* Center the entire .aboutUs content */
 .aboutUs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Ensures content starts from the top but is centered */
+  width: 100%; /* Ensures the container takes full width */
+}
+
+.aboutUs h1{
+  padding-bottom: 0%;
+}
+
+/* Ensure the mission statement is centered */
+.mission-statement {
+  text-align: center; /* Centers the text within the container */
+  max-width: 50%; /* Restricts the max width to enhance readability */
+  margin: 20px auto; /* Centers the container horizontally and adds vertical space */
+}
+
+.class-images-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns for a 2x2 layout */
+  grid-gap: 20px;
+  justify-items: center; /* Center items horizontally */
+  width: fit-content; /* Adjusts width to content */
+  margin: 20px auto; /* Centers the grid container */
   padding: 20px;
 }
 
-.mission-statement {
-  max-width: 800px; /* Adjust this to control the width */
-  margin: 0 auto; /* Centers the content */
-  padding: 20px; /* Adds padding around the text */
-  text-align: justify;
-}
-
-/* Additional styles for headings and paragraphs if needed */
-h1 {
+.class-label {
+  font-size: 1.2em;
   text-align: center;
+  margin-bottom: 5px;
 }
 
-p {
-  line-height: 1.6; /* Improves readability */
+.class-images {
+  width: 350px; /* Adjusted for bigger images */
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.class-images.senior {
+  object-position: top; /* Adjusts crop for senior image */
 }

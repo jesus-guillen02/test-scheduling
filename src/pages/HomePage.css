@@ -41,3 +41,9 @@
       max-width:      100%; /* Full width on smaller screens */
     }
   }
+
+  .group-image {
+    max-width: 50%; /* Make the image width not exceed the container */
+    height: auto; /* Scale the height automatically to maintain aspect ratio */
+    margin-bottom: 20px; /* Space between the image and the text below it */
+  }

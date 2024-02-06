@@ -45,7 +45,7 @@ const initialScholarsByYear = {
         { name: 'Monrroy-Huerta, Ashley', slug: 'ashley-monrroy-huerta' },
         { name: 'Nguyen, Collin', slug: 'collin-nguyen' },
         { name: 'Ohaji, Chizitere', slug: 'chizitere-ohaji' },
-        { name: 'Pagnozzi, Ricky', slug: 'ricky-pagnozzi' },
+        { name: 'Pagnozzi II, Ricky', slug: 'ricky-pagnozzi-ii' },
         { name: 'Simpson, Kamian', slug: 'kamian-simpson' }
       ]
       // ... more scholars and years as needed ...
@@ -81,6 +81,13 @@ const initialScholarsByYear = {
     fetchScholars();
   }, []);
 
+  const classPhotos = {
+    '2024': 'Senior',
+    '2025': 'Junior',
+    '2026': 'Sophomore',
+    '2027': 'Freshman',
+  };
+
   const renderScholars = (year) => {
     const totalScholars = scholarsByYear[year].length;
     const splitPoint = Math.ceil(totalScholars * 0.5); // Adjust the ratio as needed
@@ -112,6 +119,18 @@ const initialScholarsByYear = {
   return (
     <div className="aboutUs">
       <h1>About Us</h1>
+      <div className="class-images-container">
+        {Object.entries(classPhotos).map(([year, label]) => (
+          <div key={year}>
+            <div className="class-label">Class of '{year.substring(2)}</div>
+            <img 
+              src={`https://scheduling-offline.s3.amazonaws.com/group_photos/${label}.jpg`} 
+              alt={`UTSA Top Scholar Program - ${label}`} 
+              className={`class-images ${label.toLowerCase()}`} 
+            />
+          </div>
+        ))}
+      </div>
       <p>Welcome to our Scholar's 'About Us' Page!</p>
       {Object.keys(scholarsByYear).map(year => renderScholars(year))}
 
