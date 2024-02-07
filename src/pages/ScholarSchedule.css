@@ -1,40 +1,22 @@
-.scholarSchedule {
+.scholar-schedule-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f4; /* Light grey background */
-  min-height: 100vh; /* Full height */
 }
 
-.scholarSchedule h1 {
-  color: #333; /* Dark grey color for the title */
-  margin-bottom: 10px;
-}
-
-.scholarSchedule p {
-  color: #666; /* Medium grey color for the paragraph */
+.scholar-schedule-container h1 {
+  color: #333;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Styles for the DragDropCalendar component */
-.dragDropCalendar {
-  width: 80%; /* Set the width of the calendar */
-  max-width: 1000px; /* Maximum width */
-  background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-}
-
-/* Responsive design: Adjust layout on smaller screens */
-@media (max-width: 768px) {
-  .dragDropCalendar {
-    width: 95%; /* Increase width on smaller screens */
-  }
-}
-
-.calendar-container {
-  width: 100%; /* Full width */
-  min-height: 500px; /* Minimum height to ensure visibility */
+/* If you need specific styles for the ScholarCalendar component, you can target it specifically */
+.scholar-schedule-container .scholar-calendar {
+  width: 100%;
+  max-width: 1000px; /* Adjust based on your preference */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* More styles as needed */
 }
