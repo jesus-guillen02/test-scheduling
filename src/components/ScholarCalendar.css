@@ -1,39 +1,64 @@
-/* ScholarCalendar.css */
-.fc {
-    /* Ensures the calendar has a minimum height */
-    min-height: 650px;
-    /* Provides some padding around the calendar for better spacing */
-    padding: 10px;
-    /* Ensures the calendar is centered within its container */
-    margin: auto;
-  }
-  
-  /* Adjusts the header toolbar for better visibility and spacing */
-  .fc-header-toolbar {
-    margin-bottom: 10px;
-  }
-  
-  /* Styles for specific buttons or text can be added here. For example: */
-  .fc-button {
-    background-color: #007bff;
-    color: white;
-    border: 1px solid #007bff;
-  }
-  
-  .fc-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Ensure events are easily draggable and visible */
-  .fc-event {
-    cursor: pointer;
-    color: #fff; /* White text for contrast */
-    background-color: #007bff; /* Bootstrap primary blue */
-    border: 1px solid #007bff; /* Same as background for a solid look */
-  }
-  
-  /* Adjusts day and time columns for better readability */
-  .fc-time-grid .fc-slats td {
-    height: 3em; /* Adjust based on your preference */
-  }
-  
+#calendar {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-event-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.edit-event-modal h2 {
+  margin-top: 0;
+}
+
+.edit-event-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-event-modal label {
+  margin-top: 10px;
+}
+
+.edit-event-modal input[type="text"],
+.edit-event-modal input[type="datetime-local"] {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-event-modal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-event-modal button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-event-modal button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Adjust button colors on hover */
+.edit-event-modal button:hover {
+  opacity: 0.9;
+}
