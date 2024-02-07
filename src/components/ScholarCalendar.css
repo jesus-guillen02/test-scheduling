@@ -1,0 +1,39 @@
+/* ScholarCalendar.css */
+.fc {
+    /* Ensures the calendar has a minimum height */
+    min-height: 650px;
+    /* Provides some padding around the calendar for better spacing */
+    padding: 10px;
+    /* Ensures the calendar is centered within its container */
+    margin: auto;
+  }
+  
+  /* Adjusts the header toolbar for better visibility and spacing */
+  .fc-header-toolbar {
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for specific buttons or text can be added here. For example: */
+  .fc-button {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+  }
+  
+  .fc-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Ensure events are easily draggable and visible */
+  .fc-event {
+    cursor: pointer;
+    color: #fff; /* White text for contrast */
+    background-color: #007bff; /* Bootstrap primary blue */
+    border: 1px solid #007bff; /* Same as background for a solid look */
+  }
+  
+  /* Adjusts day and time columns for better readability */
+  .fc-time-grid .fc-slats td {
+    height: 3em; /* Adjust based on your preference */
+  }
+  

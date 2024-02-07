@@ -8,14 +8,14 @@ const eventSchema = new mongoose.Schema({
   location: String,
   professors: [String],
   description: String,
-  // Use slugs for linking
-  candidateSlugs: [{
-    type: String,
-    ref: 'Candidate' // Make sure this matches the name used in mongoose.model for Candidate
+  // Change to use ObjectId for referencing
+  candidates: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Candidate' // Assuming 'Candidate' is the correct model name
   }],
-  scholarSlugs: [{
-    type: String,
-    ref: 'Scholar' // Make sure this matches the name used in mongoose.model for Scholar
+  scholars: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Scholar' // Assuming 'Scholar' is the correct model name
   }],
   // Additional fields...
 });
